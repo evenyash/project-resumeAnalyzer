@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useInterview } from "../hooks/useInterview";
+import { useInterview } from "../hooks/useInterview.js";
 import { Link, useParams } from "react-router";
 
 const NAV_ITEMS = [
