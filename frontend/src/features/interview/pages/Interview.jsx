@@ -93,7 +93,7 @@ const RoadMap = ({ plan }) => {
 const Interview = () => {
   const [activeNav, setActiveNav] = useState("technical");
 
-  const { report, loading, getReportById } = useInterview();
+  const { report, loading, getReportById, getResumePdf } = useInterview();
   const { interviewId } = useParams();
 
   useEffect(() => {

@@ -5,8 +5,9 @@ import {
   generateResumePdf,
 } from "../services/interview.api.js";
 import { useContext, useEffect } from "react";
-import { InterviewContext } from "../interview.context.jsx";
+import { InterviewContext } from "../contexts/interview.context.jsx";
 import { useParams } from "react-router";
+import toast from "react-hot-toast";
 
 export const useInterview = () => {
   const context = useContext(InterviewContext);
@@ -32,9 +33,10 @@ export const useInterview = () => {
         selfDescription,
         resumeFile,
       });
+      toast.success(response.message);
       setReport(response.interviewReport);
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -47,9 +49,10 @@ export const useInterview = () => {
     let response = null;
     try {
       response = await getInterviewReportById(interviewId);
+      toast.success(response.message);
       setReport(response.interviewReport);
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -61,6 +64,7 @@ export const useInterview = () => {
     let response = null;
     try {
       response = await getAllInterviewReports();
+      toast.success(response.message);
       setReports(response.interviewReports);
     } catch (error) {
       console.error(error);
@@ -85,7 +89,7 @@ export const useInterview = () => {
       document.body.appendChild(link);
       link.click();
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }

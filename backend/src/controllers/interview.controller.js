@@ -13,10 +13,15 @@ import {
  * @access Private
  */
 export const getInterviewReport = async (req, res) => {
-  const resumeContent = await new PDFParse(
-    Uint8Array.from(req.file.buffer),
-  ).getText();
+  const resumeContent =
+    req.file && req.file.buffer
+      ? await new PDFParse(Uint8Array.from(req.file.buffer)).getText()
+      : "No resume";
+
   const { selfDescription, jobDescription } = req.body;
+
+  if (!jobDescription)
+    return res.status(400).json({ message: "Job Description is necessary" });
 
   const aiInterviewReport = await generateInterviewReport({
     resume: resumeContent.text,

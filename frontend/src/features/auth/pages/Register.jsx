@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
 
 import { useAuth } from "../hooks/useAuth.js";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const { loading, handleRegister } = useAuth();
+  const { user, loading, handleRegister } = useAuth();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -14,8 +15,20 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleRegister({ username, email, password });
-    navigate("/");
+
+    if (!username || !email || !password)
+      return toast.error("All fields are necessary!");
+
+    try {
+      await handleRegister({ username, email, password });
+      navigate("/");
+    } catch (error) {
+      navigate("/register");
+    }
+
+    setUsername("");
+    setEmail("");
+    setPassword("");
   };
 
   if (loading) {

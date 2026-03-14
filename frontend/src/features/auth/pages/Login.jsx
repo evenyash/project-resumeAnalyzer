@@ -2,19 +2,30 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
 
 import { useAuth } from "../hooks/useAuth.js";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const { loading, handleLogin } = useAuth();
+  const { user, loading, handleLogin } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleLogin({ email, password });
-    navigate("/");
+
+    if (!email || !password) return toast.error("All fields are necessary!");
+
+    try {
+      await handleLogin({ email, password });
+      navigate("/");
+    } catch (error) {
+      navigate("/login");
+    }
+
+    setEmail("");
+    setPassword("");
   };
 
   if (loading) {

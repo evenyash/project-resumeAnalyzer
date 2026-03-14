@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 
 import { useInterview } from "../hooks/useInterview.js";
 import { useNavigate } from "react-router";
-import { logout } from "../../auth/services/auth.api.js";
+import { useAuth } from "../../auth/hooks/useAuth.js";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const { loading, generateReport, reports } = useInterview();
@@ -10,9 +11,13 @@ const Home = () => {
   const [selfDescription, setSelfDescription] = useState("");
   const resumeInputRef = useRef();
 
+  const { handleLogout } = useAuth();
+
   const navigate = useNavigate();
 
   const handleGenerateReport = async () => {
+    if (!jobDescription) return toast.error("Job description is requried!");
+
     const resumeFile = resumeInputRef.current.files[0];
     const data = await generateReport({
       jobDescription,
@@ -22,8 +27,8 @@ const Home = () => {
     navigate(`/interview/${data._id}`);
   };
 
-  const handleLogout = async () => {
-    await logout();
+  const handleUserLogout = async () => {
+    await handleLogout();
     navigate("/login");
   };
 
@@ -51,7 +56,7 @@ const Home = () => {
         </p>
         <div className="flex justify-end">
           <button
-            onClick={handleLogout}
+            onClick={handleUserLogout}
             className="md:hidden block px-3 py-1.5 text-sm rounded-lg bg-[#d20d3b] hover:bg-[#b50b32] transition mt-4 cursor-pointer"
           >
             Logout
@@ -163,7 +168,7 @@ const Home = () => {
                   type="file"
                   id="resume"
                   name="resume"
-                  accept=".pdf,.docx"
+                  accept=".pdf"
                 />
               </label>
             </div>

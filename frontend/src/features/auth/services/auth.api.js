@@ -6,48 +6,31 @@ const api = axios.create({
 });
 
 export const register = async ({ username, email, password }) => {
-  try {
-    const res = await api.post("/api/auth/register", {
-      username,
-      email,
-      password,
-    });
+  const res = await api.post("/api/auth/register", {
+    username,
+    email,
+    password,
+  });
 
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return res.data;
 };
 
 export const login = async ({ email, password }) => {
-  try {
-    const res = await api.post("/api/auth/login", {
-      email,
-      password,
-    });
-
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const res = await api.post("/api/auth/login", {
+    email,
+    password,
+  });
+  return res.data;
 };
 
 export const logout = async () => {
-  try {
-    const res = await api.get("/api/auth/logout");
+  const res = await api.get("/api/auth/logout");
 
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return res.data;
 };
 
 export const getMe = async () => {
-  try {
-    const res = await api.get("/api/auth/get-me");
+  const res = await api.get("/api/auth/get-me");
 
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  return res.data;
 };
