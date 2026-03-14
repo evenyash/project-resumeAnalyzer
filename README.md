@@ -9,7 +9,7 @@ The application also generates interview questions, suggests relevant skills to 
 
 ## Live Demo
 
-https://project-resumeanalyzer.onrender.com
+https://project-resume-analyzer.vercel.app
 
 ---
 
