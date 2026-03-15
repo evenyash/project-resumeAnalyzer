@@ -90,4 +90,4 @@ https://project-resume-analyzer.vercel.app
 ### Dashboard Pages
 ![Report UI](/screenshots/Report%20Dashboard.png)
 
-![Preparation Plan UI](/screenshots/Preparaton%20Plan.png)
+![Preparation Plan UI](/screenshots/Preparation%20Plan.png)
