@@ -75,3 +75,19 @@ https://project-resume-analyzer.vercel.app
 10. The system also generates an AI-optimized resume tailored to the job description.
 11. User can download the generated resume as a PDF.
 
+---
+
+## Screenshots
+
+### User Register & Login
+![Register UI](/screenshots/Register.png)
+
+![Login UI](/screenshots/Login.png)
+
+### Home Page
+![Home Page UI](/screenshots/Home%20Page.png)
+
+### Dashboard Pages
+![Report UI](/screenshots/Report%20Dashboard.png)
+
+![Preparation Plan UI](/screenshots/Preparaton%20Plan.png)
