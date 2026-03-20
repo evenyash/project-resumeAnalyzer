@@ -6,8 +6,12 @@ const Protected = ({ children }) => {
 
   if (loading) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-[#0b0f17] text-white">
-        <h1>Loading...</h1>
+      <main className="min-h-screen flex flex-col items-center justify-center bg-[#0b0f17] text-white">
+        <h1>Please wait for some time...</h1>
+        <h1>
+          The server is hosted on render in free tier. It may take some time to
+          get started.
+        </h1>
       </main>
     );
   }
