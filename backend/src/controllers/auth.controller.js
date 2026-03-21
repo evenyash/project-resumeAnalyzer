@@ -47,6 +47,7 @@ export const registerUser = async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
+    maxAge: 24 * 60 * 60 * 1000,
   });
 
   res.status(201).json({
@@ -55,7 +56,6 @@ export const registerUser = async (req, res) => {
       id: user._id,
       username: user.username,
       email: user.email,
-      maxAge: 24 * 60 * 60 * 1000,
     },
   });
 };
